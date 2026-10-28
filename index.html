@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#210f25">
+<title>Rinku — A Secret Written in Stars</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root{
+  --night:#210f25;
+  --plum:#35182f;
+  --rose:#f4a8c4;
+  --pink:#ffdce9;
+  --cream:#fff4ee;
+  --muted:#d6b8c8;
+  --gold:#e9c58a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--night);color:var(--cream);
+  font-family:'DM Sans',sans-serif;overflow-x:hidden;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.hidden{display:none!important}
+#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{
+  position:absolute;border-radius:50%;background:#fff0fa;
+  box-shadow:0 0 9px #f6b3d5;animation:twinkle 3s infinite alternate;
+}
+@keyframes twinkle{from{opacity:.15;transform:scale(.7)}to{opacity:1;transform:scale(1.3)}}
+.petal{
+  position:fixed;top:-30px;z-index:1;pointer-events:none;
+  animation:fall linear forwards;opacity:.8
+}
+@keyframes fall{to{transform:translateY(110vh) rotate(500deg);opacity:0}}
+main{position:relative;z-index:2}
+.serif{font-family:'Cormorant Garamond',serif}
+.eyebrow{
+  color:var(--rose);letter-spacing:4px;text-transform:uppercase;
+  font-size:.7rem;font-weight:600
+}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500}
+h1{font-size:clamp(3.5rem,12vw,7rem);line-height:.92}
+h2{font-size:clamp(2.2rem,7vw,4rem);line-height:1.05}
+p{line-height:1.9}
+.muted{color:var(--muted)}
+.pink{color:var(--rose)}
+.gold{color:var(--gold)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  border:1px solid #f4a8c477;padding:13px 22px;border-radius:30px;
+  color:var(--cream);background:#f4a8c414;transition:.3s;
+}
+.btn:hover{background:var(--rose);color:var(--night);transform:translateY(-3px)}
+.btn-solid{background:var(--rose);color:var(--night);font-weight:600}
+.wrap{width:min(1000px,100%);margin:auto;padding:0 22px}
+.center{text-align:center}
+.section{padding:95px 0}
+.rule{width:70px;height:1px;background:var(--gold);margin:24px auto}
+.nav{
+  position:sticky;top:0;z-index:10;background:#210f25d9;
+  backdrop-filter:blur(16px);border-bottom:1px solid #ffffff13;
+}
+.nav-inner{
+  width:min(1100px,100%);margin:auto;padding:15px 22px;
+  display:flex;justify-content:space-between;align-items:center;gap:15px
+}
+.brand{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--rose)}
+.nav-links{display:flex;gap:20px;font-size:.78rem;color:var(--muted)}
+.nav-links a:hover{color:var(--rose)}
+.hero{
+  min-height:90vh;display:grid;place-items:center;text-align:center;
+  padding:70px 20px;position:relative;
+  background:radial-gradient(ellipse at 50% 35%,#71385b70,transparent 62%);
+}
+.hero-content{max-width:780px;animation:rise 1.3s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{margin:20px 0;color:var(--pink);text-shadow:0 0 35px #f4a8c42c}
+.hero .subtitle{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,3vw,1.65rem);
+  color:var(--muted);max-width:600px;margin:22px auto 30px
+}
+.heart{font-size:2rem;color:var(--rose);animation:heartbeat 2s infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}}
+.library-art{
+  width:min(500px,100%);height:170px;margin:35px auto 0;
+  display:flex;justify-content:center;align-items:end;gap:7px;
+  perspective:600px;position:relative
+}
+.library-art:before{
+  content:"";position:absolute;bottom:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  box-shadow:0 0 25px #e9c58a55
+}
+.book{
+  width:44px;border-radius:5px 5px 1px 1px;border:1px solid #f7d4e555;
+  box-shadow:inset 4px 0 7px #ffffff12,0 0 15px #f4a8c414;
+  transform-origin:bottom;animation:bookGlow 3s infinite alternate
+}
+.book:nth-child(1){height:95px;background:#793b59}
+.book:nth-child(2){height:125px;background:#4d294d;animation-delay:.5s}
+.book:nth-child(3){height:145px;background:#9d5473;transform:rotate(-2deg)}
+.book:nth-child(4){height:115px;background:#38234b;animation-delay:1s}
+.book:nth-child(5){height:155px;background:#a45e79}
+.book:nth-child(6){height:105px;background:#56304f;animation-delay:.7s}
+.book:nth-child(7){height:135px;background:#773b62}
+@keyframes bookGlow{to{box-shadow:inset 4px 0 7px #ffffff12,0 0 22px #f4a8c42b}}
+.chapter-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:36px
+}
+.chapter{
+  background:linear-gradient(145deg,#44233f,#29152d);
+  border:1px solid #f4a8c42b;border-radius:17px;padding:24px 18px;
+  text-align:left;min-height:185px;transition:.3s;position:relative;overflow:hidden
+}
+.chapter:after{
+  content:"";position:absolute;width:100px;height:100px;border-radius:50%;
+  background:#f4a8c40c;right:-35px;bottom:-35px
+}
+.chapter:hover{transform:translateY(-6px);border-color:var(--rose);box-shadow:0 15px 35px #0002}
+.chapter-num{font-size:.72rem;color:var(--gold);letter-spacing:2px}
+.chapter h3{font-size:1.65rem;color:var(--pink);margin:15px 0 8px}
+.chapter p{font-size:.82rem;color:var(--muted)}
+.read-link{display:inline-block;margin-top:15px;color:var(--rose);font-size:.8rem}
+.letter-panel{
+  max-width:750px;margin:35px auto 0;padding:clamp(25px,6vw,55px);
+  border:1px solid #e9c58a4c;background:linear-gradient(140deg,#3c2039,#261329);
+  border-radius:5px 25px 5px 25px;box-shadow:0 20px 70px #0003;
+  text-align:left;position:relative
+}
+.letter-panel:before{
+  content:"✦";position:absolute;top:17px;right:22px;color:var(--gold)
+}
+.letter-panel p{margin:17px 0;color:#f5dce7}
+.letter-panel h3{font-size:2rem;color:var(--gold)}
+.signature{text-align:right;color:var(--rose)!important;font-family:'Cormorant Garamond',serif;font-size:1.5rem}
+.story-box{
+  max-width:760px;margin:35px auto 0;text-align:left;
+  padding:clamp(25px,6vw,50px);background:#fff8f204;
+  border:1px solid #ffffff18;border-radius:18px;
+}
+.story-box h3{font-size:2rem;color:var(--pink);margin-bottom:15px}
+.story-box p{color:#e7cad9;margin:14px 0}
+.story-box .chapter-label{color:var(--gold);font-size:.7rem;letter-spacing:3px}
+.story-controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:25px}
+.promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:35px}
+.promise{
+  padding:23px 16px;border-radius:17px;border:1px solid #f4a8c426;
+  background:#ffffff06
+}
+.promise .icon{font-size:1.8rem}
+.promise h3{font-size:1.5rem;color:var(--rose);margin:10px 0}
+.promise p{font-size:.82rem;color:var(--muted)}
+.final{
+  background:radial-gradient(ellipse at 50% 50%,#6e3155,transparent 70%);
+  padding:110px 20px
+}
+.final h2{color:var(--pink);margin:20px 0}
+footer{border-top:1px solid #ffffff12;padding:30px 20px;text-align:center;color:var(--muted);font-size:.8rem}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* password screen */
+#lockScreen{
+  position:fixed;inset:0;z-index:1000;background:
+  radial-gradient(ellipse at 50% 30%,#67304f,#210f25 68%);
+  display:grid;place-items:center;padding:22px
+}
+.lock-card{
+  width:min(430px,100%);text-align:center;padding:35px 24px;
+  border:1px solid #f4a8c455;background:#ffffff08;
+  border-radius:25px;box-shadow:0 20px 80px #0004
+}
+.lock-icon{font-size:3rem;margin-bottom:15px}
+.lock-card h2{font-size:2.8rem;color:var(--pink);margin:12px 0}
+.lock-card p{color:var(--muted);font-size:.9rem}
+.lock-form{display:flex;gap:8px;margin-top:23px}
+.lock-form input{
+  min-width:0;flex:1;background:#ffffff0c;border:1px solid #f4a8c455;
+  color:white;border-radius:30px;padding:13px 15px;outline:none
+}
+.lock-form input:focus{border-color:var(--rose)}
+#lockError{color:#ff9fb9;font-size:.8rem;min-height:25px;margin-top:12px}
+#site{display:none}
+@media(max-width:650px){
+  .nav-links{gap:12px;font-size:.68rem}
+  .chapter-grid{grid-template-columns:1fr}
+  .chapter{min-height:auto}
+  .promise-grid{grid-template-columns:1fr}
+  .section{padding:70px 0}
+  .hero{min-height:84vh}
+  .lock-form{flex-direction:column}
+  .lock-form .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+
+<body>
+<div id="stars"></div>
+
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen">
+  <div class="lock-card">
+    <div class="lock-icon">🗝️</div>
+    <div class="eyebrow">A secret library awaits</div>
+    <h2 class="serif">For Rinku</h2>
+    <p>Har kitaab har kisi ke liye nahi hoti.<br>
+    Yeh kahani sirf us ladki ke liye hai jiska naam Rinku hai. 🎀</p>
+    <form class="lock-form" id="unlockForm">
+      <input id="passwordInput" type="password" placeholder="Secret password..." autocomplete="off" required>
+      <button class="btn btn-solid" type="submit">Unlock ♡</button>
+    </form>
+    <div id="lockError" aria-live="polite"></div>
+    <p style="font-size:.7rem;margin-top:12px">A little mystery. A little magic. A lot of heart.</p>
+  </div>
+</div>
+
+<div id="site">
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home">Rinku ♡</a>
+    <div class="nav-links">
+      <a href="#library">Library</a>
+      <a href="#story">Our Story</a>
+      <a href="#letter">Letter</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">Volume I · A story written for you</div>
+    <div class="heart" style="margin-top:25px">♡</div>
+    <h1 class="serif">Rinku</h1>
+    <p class="subtitle">“Some stories are read with the eyes.<br>Some are felt with the heart.”</p>
+    <p class="muted">Ek secret library hai, ek kahani hai…<br>aur us kahani ki sabse khoobsurat wajah tum ho.</p>
+    <div style="margin-top:30px">
+      <a class="btn btn-solid" href="#library">Enter the library ✧</a>
+    </div>
+    <div class="library-art" aria-label="A glowing bookshelf illustration">
+      <div class="book"></div><div class="book"></div><div class="book"></div>
+      <div class="book"></div><div class="book"></div><div class="book"></div><div class="book"></div>
+    </div>
+    <p class="eyebrow" style="margin-top:17px">Made with love by RJ</p>
+  </div>
+</section>
+
+<section class="section" id="library">
+  <div class="wrap center reveal">
+    <div class="eyebrow">Choose your next chapter</div>
+    <h2 style="margin-top:15px">The Secret <span class="pink">Library</span></h2>
+    <div class="rule"></div>
+    <p class="muted">Har chapter mein ek raaz hai. Har page par ek ehsaas.<br>
+    Dheere-dheere padhna, Rinku. Yeh kahani jaldi khatam karne ke liye nahi hai. 🌙</p>
+  </div>
+  <div class="wrap">
+    <div class="chapter-grid">
+      <button class="chapter" onclick="openChapter(0)">
+        <span class="chapter-num">CHAPTER 01</span>
+        <h3>The Girl in the Library</h3>
+        <p>Ek aisi ladki jise kitaabon ki duniya se pyaar tha…</p>
+        <span class="read-link">Open chapter ↗</span>
+      </button>
+      <button class="chapter" onclick="openChapter(1)">
+        <span class="chapter-num">CHAPTER 02</span>
+        <h3>The Quiet Obsession</h3>
+        <p>Jab koi ek insaan har kahani ka favourite hissa ban jaaye.</p>
+        <span class="read-link">Open chapter ↗</span>
+      </button>
+      <button class="chapter" onclick="openChapter(2)">
+        <span class="chapter-num">CHAPTER 03</span>
+        <h3>Midnight Promises</h3>
+        <p>Raat, chaand aur kuch waade jo dil se kiye jaate hain.</p>
+        <span class="read-link">Open chapter ↗</span>
+      </button>
+      <button class="chapter" onclick="openChapter(3)">
+        <span class="chapter-num">CHAPTER 04</span>
+        <h3>Between the Lines</h3>
+        <p>Kuch feelings jo words mein poori tarah nahi likhi ja sakti.</p>
+        <span class="read-link">Open chapter ↗</span>
+      </button>
+      <button class="chapter" onclick="openChapter(4)">
+        <span class="chapter-num">CHAPTER 05</span>
+        <h3>My Favourite Ending</h3>
+        <p>Ek ending nahi… ek nayi kahani ki shuruaat.</p>
+        <span class="read-link">Open chapter ↗</span>
+      </button>
+      <button class="chapter" onclick="openChapter(5)">
+        <span class="chapter-num">BONUS CHAPTER</span>
+        <h3>A Letter from RJ</h3>
+        <p>Ek letter jo kisi bookshelf mein nahi, tumhare liye hai.</p>
+        <span class="read-link">Read your letter ↗</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="story" style="background:#ffffff04">
+  <div class="wrap center reveal">
+    <div class="eyebrow">A dark romance inspired tale</div>
+    <h2 style="margin-top:15px">Written in <span class="pink">Midnight Ink</span></h2>
+    <p class="muted" style="margin-top:15px">Choose a chapter above or start reading below.</p>
+    <div class="story-box" id="storyBox">
+      <div class="chapter-label" id="storyLabel">CHAPTER 01</div>
+      <h3 id="storyTitle">The Girl in the Library</h3>
+      <div id="storyText">
+        <p>She loved books because between their pages, the world became quiet. Every story was a door, every sentence a secret passage to somewhere new.</p>
+        <p>And somewhere in that endless library, a story was waiting that didn't begin with a prince or a perfect hero. It began with a simple thought: what if someone saw the world the way she did?</p>
+        <p>Us kahani mein ladki ka naam Rinku tha. Aur uske liye likhne wala ladka, RJ, bas itna chahta tha ki woh apni kahani ki heroine khud bane.</p>
+      </div>
+      <div class="story-controls">
+        <button class="btn" onclick="changeChapter(-1)">← Previous</button>
+        <button class="btn btn-solid" onclick="changeChapter(1)">Next chapter →</button>
+      </div>
+    </div>
+    <p class="muted" style="font-size:.8rem;margin-top:17px">Fictional romantic story created specially for this website.</p>
+  </div>
+</section>
+
+<section class="section" id="letter">
+  <div class="wrap center reveal">
+    <div class="eyebrow">A page from my heart</div>
+    <h2 style="margin-top:15px">Dear <span class="pink">Rinku</span>…</h2>
+    <div class="letter-panel">
+      <h3>To the girl who loves stories,</h3>
+      <p>Hey meri Rinku 🎀</p>
+      <p>Main soch raha tha ki tumhe aisa kya doon jo tumhari favourite duniya se juda ho. Phir laga, tumhe books pasand hain… toh kyun na tumhare liye ek chhoti si digital book banaun?</p>
+      <p>Tum meri life ki koi perfect fictional character nahi ho. Tum real ho — apni feelings, apni choices, apni khushiyon aur apne dreams ke saath. Aur shayad isi wajah se tum mere liye itni special ho.</p>
+      <p>Agar kabhi duniya bahut loud lage, toh apni favourite book khol lena. Aur agar kabhi tumhe lage ki koi tumhari baat sunne wala chahiye, toh main chahta hoon ki tum mujhse bina dare apne dil ki baat keh sako.</p>
+      <p>Main tumhari har kahani ka hero banne ka daawa nahi karta. Bas itna chahta hoon ki main tumhari life mein respect, honesty aur pyaar lekar aaun.</p>
+      <p>Keep reading, keep dreaming, aur apni kahani ki main character hamesha khud rehna. ❤️</p>
+      <p class="signature">Yours, RJ ♡</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap center reveal">
+    <div class="eyebrow">Three little promises</div>
+    <h2 style="margin-top:15px">Not just words, <span class="pink">Betu.</span></h2>
+    <div class="promise-grid">
+      <div class="promise">
+        <div class="icon">🕯️</div>
+        <h3>Honesty</h3>
+        <p>Baatein chhupane se behtar hai, sach ko pyaar se kehna.</p>
+      </div>
+      <div class="promise">
+        <div class="icon">📖</div>
+        <h3>Listening</h3>
+        <p>Tumhari feelings ko samajhne ki koshish karna, bina judge kiye.</p>
+      </div>
+      <div class="promise">
+        <div class="icon">🌷</div>
+        <h3>Respect</h3>
+        <p>Tumhari boundaries, dreams aur choices ki hamesha respect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final center">
+  <div class="wrap reveal">
+    <div class="heart">♡</div>
+    <div class="eyebrow">The end of this page, not the story</div>
+    <h2>To my favourite reader</h2>
+    <p class="muted" style="max-width:570px;margin:0 auto 25px">
+      Rinku, duniya mein laakhon kitaabein hongi, par tumhari kahani sirf tumhari hai.
+      Use apne tareeke se likhna. Aur agar tum chaho, toh main us safar mein tumhare saath chalna chahta hoon. 🎀
+    </p>
+    <button class="btn btn-solid" onclick="finalNote()">One last secret ✧</button>
+    <p id="finalMessage" style="margin:22px auto;max-width:500px;color:var(--pink)" aria-live="polite"></p>
+    <p class="serif pink" style="font-size:2rem;margin-top:20px">RJ ♡ Rinku</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="serif pink" style="font-size:1.5rem">Rinku's Secret Library</p>
+  <p>Made with love, a little mystery, and many feelings.</p>
+  <p style="font-size:.7rem;margin-top:8px">A private surprise from RJ 🎀</p>
+</footer>
+</div>
+
+<script>
+/* CHANGE THIS PASSWORD BEFORE SHARING THE WEBSITE */
+const SECRET_PASSWORD = "RINKU";
+
+const chapters = [
+{
+label:"CHAPTER 01",
+title:"The Girl in the Library",
+text:[
+"She loved books because between their pages, the world became quiet. Every story was a door, every sentence a secret passage to somewhere new.",
+"Somewhere in that endless library, a story was waiting that didn't begin with a prince or a perfect hero. It began with a simple thought: what if someone saw the world the way she did?",
+"Us kahani mein ladki ka naam Rinku tha. Aur uske liye likhne wala ladka, RJ, bas itna chahta tha ki woh apni kahani ki heroine khud bane."
+]},
+{
+label:"CHAPTER 02",
+title:"The Quiet Obsession",
+text:[
+"Some people arrive like thunder. Others arrive quietly and somehow become the thought you return to, even when the day has ended.",
+"RJ didn't want to own Rinku's world. He wanted to understand it — the books she loved, the dreams she carried, the little things that made her smile.",
+"Usse Rinku ki har baat jaanne ki curiosity thi, par usse bhi zyada zaroori tha uski har baat sunna. Pyaar ka matlab kisi ko apna banana nahi, balki usse apna rehne dena bhi hota hai."
+]},
+{
+label:"CHAPTER 03",
+title:"Midnight Promises",
+text:[
+"At midnight, the library felt like a different universe. The lamps glowed softly, the pages whispered, and the moon kept its secrets behind the window.",
+"RJ wrote a promise in the margin of an unfinished book: I will try to understand before I answer. I will be honest, even when honesty is difficult. I will never make your dreams feel small.",
+"Rinku ke liye yeh koi dramatic vow nahi tha. Bas ek simple si baat thi — pyaar sirf beautiful words nahi, roz ke chhote actions bhi hote hain."
+]},
+{
+label:"CHAPTER 04",
+title:"Between the Lines",
+text:[
+"Not every feeling fits neatly inside a sentence. Sometimes love is a message asking if you reached home safely. Sometimes it is listening to a story you have heard a hundred times.",
+"Sometimes it is an apology that doesn't demand instant forgiveness. Sometimes it is giving someone room to breathe, and staying kind while they find their words.",
+"RJ ne seekha ki kisi ke dil ko samajhne ke liye sirf uski smile dekhna kaafi nahi. Uski silence ko bhi respect dena padta hai."
+]},
+{
+label:"CHAPTER 05",
+title:"My Favourite Ending",
+text:[
+"The book was never about a perfect ending. It was about two people choosing honesty over guessing, kindness over pride, and conversation over silence.",
+"Rinku closed the book and looked toward the window. The stars were still there, the world was still full of unknown chapters, and her future still belonged to her.",
+"RJ ki favourite ending woh thi jahan dono apne dreams ko chase karte rahein, ek doosre ki respect karein, aur har nayi subah ko ek nayi kahani ka chance samjhein."
+]},
+{
+label:"BONUS CHAPTER",
+title:"A Letter from RJ",
+text:[
+"Dear Rinku, agar tum yahan tak padh aayi ho, toh meri taraf se ek warm sa virtual hug. 🤗",
+"Yeh chhoti si website tumhe yaad dilane ke liye hai ki tumhari interests, tumhari imagination aur tumhare dreams important hain. Tum sirf kisi ki favourite person nahi — tum apni poori duniya ho.",
+"Jab bhi tum koi nayi book start karo, I hope uske pages tumhe naye ideas, naye worlds aur bahut saari happiness dein.",
+"With love, RJ ♡"
+]}
+];
+
+let currentChapter = 0;
+
+function showChapter(index){
+  currentChapter = Math.max(0,Math.min(chapters.length-1,index));
+  const c = chapters[currentChapter];
+  document.getElementById("storyLabel").textContent = c.label;
+  document.getElementById("storyTitle").textContent = c.title;
+  const textBox = document.getElementById("storyText");
+  textBox.innerHTML = "";
+  c.text.forEach(line=>{
+    const p = document.createElement("p");
+    p.textContent = line;
+    textBox.appendChild(p);
+  });
+}
+function openChapter(index){
+  showChapter(index);
+  document.getElementById("story").scrollIntoView({behavior:"smooth"});
+}
+function changeChapter(direction){
+  showChapter((currentChapter + direction + chapters.length) % chapters.length);
+}
+
+function finalNote(){
+  document.getElementById("finalMessage").textContent =
+    "Secret yeh hai, Rinku: tumhari favourite stories chahe kitni bhi dark hon, I hope real life tumhe hamesha kindness, safety aur genuine love de. — RJ 🎀";
+  petals(22);
+}
+
+/* Client-side surprise gate only. Not secure authentication. */
+document.getElementById("unlockForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const entered = document.getElementById("passwordInput").value;
+  if(entered.toLowerCase() === SECRET_PASSWORD.toLowerCase()){
+    document.getElementById("lockScreen").classList.add("hidden");
+    document.getElementById("site").style.display = "block";
+    document.body.style.overflowX = "hidden";
+    try{sessionStorage.setItem("rinkuLibraryUnlocked","yes")}catch(e){}
+    makeStars();
+    setTimeout(petals,700);
+  }else{
+    document.getElementById("lockError").textContent = "Hmm… yeh secret key nahi hai, Betu. Try again ♡";
+    document.getElementById("passwordInput").value = "";
+  }
+});
+
+try{
+  if(sessionStorage.getItem("rinkuLibraryUnlocked")==="yes"){
+    document.getElementById("lockScreen").classList.add("hidden");
+    document.getElementById("site").style.display="block";
+  }
+}catch(e){}
+
+function makeStars(){
+  const layer=document.getElementById("stars");
+  if(layer.children.length)return;
+  for(let i=0;i<75;i++){
+    const s=document.createElement("i");
+    s.className="star";
+    s.style.left=Math.random()*100+"%";
+    s.style.top=Math.random()*100+"%";
+    const size=1+Math.random()*2.5;
+    s.style.width=size+"px";
+    s.style.height=size+"px";
+    s.style.animationDelay=Math.random()*4+"s";
+    layer.appendChild(s);
+  }
+}
+function petals(count=12){
+  for(let i=0;i<count;i++){
+    const p=document.createElement("span");
+    p.className="petal";
+    p.textContent=["🌸","♡","✧","🌷"][Math.floor(Math.random()*4)];
+    p.style.left=Math.random()*100+"vw";
+    p.style.fontSize=(12+Math.random()*16)+"px";
+    p.style.animationDuration=(5+Math.random()*6)+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),12000);
+  }
+}
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+if(document.getElementById("site").style.display==="block")makeStars();
+</script>
+</body>
+</html>
