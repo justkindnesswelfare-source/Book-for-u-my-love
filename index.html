@@ -2,541 +2,840 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#210f25">
-<title>Rinku — A Secret Written in Stars</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#261923">
+<title>Rinku | The Girl in His Dreams</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap');
-
 :root{
-  --night:#210f25;
-  --plum:#35182f;
-  --rose:#f4a8c4;
-  --pink:#ffdce9;
-  --cream:#fff4ee;
-  --muted:#d6b8c8;
-  --gold:#e9c58a;
+  --ink:#30232b;--paper:#f8f0e4;--paper2:#f2e6d7;
+  --rose:#bd7890;--dark:#261923;--muted:#8a6c78;--gold:#a17b51;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  background:var(--night);color:var(--cream);
-  font-family:'DM Sans',sans-serif;overflow-x:hidden;
-}
+body{margin:0;background:var(--dark);color:#f9eaf0;font-family:Georgia,'Times New Roman',serif}
 button,input{font:inherit}
 button{cursor:pointer}
-a{color:inherit;text-decoration:none}
 .hidden{display:none!important}
-#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.star{
-  position:absolute;border-radius:50%;background:#fff0fa;
-  box-shadow:0 0 9px #f6b3d5;animation:twinkle 3s infinite alternate;
+#gate{
+  position:fixed;inset:0;z-index:50;display:grid;place-items:center;
+  padding:20px;background:radial-gradient(ellipse,#563449,var(--dark) 70%)
 }
-@keyframes twinkle{from{opacity:.15;transform:scale(.7)}to{opacity:1;transform:scale(1.3)}}
-.petal{
-  position:fixed;top:-30px;z-index:1;pointer-events:none;
-  animation:fall linear forwards;opacity:.8
+.gate-card{width:min(410px,100%);text-align:center;padding:32px 24px;border:1px solid #d49bb655}
+.gate-card h1{font-size:3.3rem;font-weight:normal;font-style:italic;margin:15px 0;color:#f4d7e2}
+.gate-card p{line-height:1.8;color:#ddc8d1}
+.gate-card input{
+  width:100%;padding:13px;margin:12px 0;background:#fff;color:#261923;
+  border:0;outline:1px solid #c89caf
 }
-@keyframes fall{to{transform:translateY(110vh) rotate(500deg);opacity:0}}
-main{position:relative;z-index:2}
-.serif{font-family:'Cormorant Garamond',serif}
-.eyebrow{
-  color:var(--rose);letter-spacing:4px;text-transform:uppercase;
-  font-size:.7rem;font-weight:600
-}
-h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500}
-h1{font-size:clamp(3.5rem,12vw,7rem);line-height:.92}
-h2{font-size:clamp(2.2rem,7vw,4rem);line-height:1.05}
-p{line-height:1.9}
-.muted{color:var(--muted)}
-.pink{color:var(--rose)}
-.gold{color:var(--gold)}
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  border:1px solid #f4a8c477;padding:13px 22px;border-radius:30px;
-  color:var(--cream);background:#f4a8c414;transition:.3s;
+  border:1px solid #b67d92;background:transparent;color:inherit;
+  padding:11px 18px;letter-spacing:.4px;transition:.2s
 }
-.btn:hover{background:var(--rose);color:var(--night);transform:translateY(-3px)}
-.btn-solid{background:var(--rose);color:var(--night);font-weight:600}
-.wrap{width:min(1000px,100%);margin:auto;padding:0 22px}
-.center{text-align:center}
-.section{padding:95px 0}
-.rule{width:70px;height:1px;background:var(--gold);margin:24px auto}
-.nav{
-  position:sticky;top:0;z-index:10;background:#210f25d9;
-  backdrop-filter:blur(16px);border-bottom:1px solid #ffffff13;
-}
-.nav-inner{
-  width:min(1100px,100%);margin:auto;padding:15px 22px;
-  display:flex;justify-content:space-between;align-items:center;gap:15px
-}
-.brand{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--rose)}
-.nav-links{display:flex;gap:20px;font-size:.78rem;color:var(--muted)}
-.nav-links a:hover{color:var(--rose)}
-.hero{
-  min-height:90vh;display:grid;place-items:center;text-align:center;
-  padding:70px 20px;position:relative;
-  background:radial-gradient(ellipse at 50% 35%,#71385b70,transparent 62%);
-}
-.hero-content{max-width:780px;animation:rise 1.3s ease both}
-@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-.hero h1{margin:20px 0;color:var(--pink);text-shadow:0 0 35px #f4a8c42c}
-.hero .subtitle{
-  font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,3vw,1.65rem);
-  color:var(--muted);max-width:600px;margin:22px auto 30px
-}
-.heart{font-size:2rem;color:var(--rose);animation:heartbeat 2s infinite}
-@keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}}
-.library-art{
-  width:min(500px,100%);height:170px;margin:35px auto 0;
-  display:flex;justify-content:center;align-items:end;gap:7px;
-  perspective:600px;position:relative
-}
-.library-art:before{
-  content:"";position:absolute;bottom:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  box-shadow:0 0 25px #e9c58a55
+.btn:hover{background:#b67d92;color:#fff}
+.gate-card .btn{width:100%}
+#error{min-height:22px;color:#f0a8bc;font-size:.9rem}
+header{max-width:1050px;margin:auto;padding:23px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff20}
+.logo{font-size:1.5rem;font-style:italic;color:#f0c8d7}
+header span:last-child{font-size:.75rem;letter-spacing:2px;color:#d6bac5}
+.intro{text-align:center;padding:58px 20px 38px}
+.kicker{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:#d5a7b8}
+.intro h1{font-size:clamp(2.8rem,8vw,5.4rem);font-weight:normal;font-style:italic;line-height:1;margin:19px 0;color:#f5dce5}
+.intro p{max-width:540px;margin:0 auto;color:#d9c4ce;line-height:1.9;font-size:1rem}
+.open-book{margin:10px auto 0;max-width:970px;padding:0 17px}
+.book-frame{
+  padding:12px;background:#4b3540;
+  border:1px solid #8b6878;box-shadow:0 25px 80px #0007
 }
 .book{
-  width:44px;border-radius:5px 5px 1px 1px;border:1px solid #f7d4e555;
-  box-shadow:inset 4px 0 7px #ffffff12,0 0 15px #f4a8c414;
-  transform-origin:bottom;animation:bookGlow 3s infinite alternate
+  display:grid;grid-template-columns:1fr 1fr;position:relative;
+  background:var(--paper);color:var(--ink);min-height:560px;
+  box-shadow:inset 0 0 24px #80624c22;
 }
-.book:nth-child(1){height:95px;background:#793b59}
-.book:nth-child(2){height:125px;background:#4d294d;animation-delay:.5s}
-.book:nth-child(3){height:145px;background:#9d5473;transform:rotate(-2deg)}
-.book:nth-child(4){height:115px;background:#38234b;animation-delay:1s}
-.book:nth-child(5){height:155px;background:#a45e79}
-.book:nth-child(6){height:105px;background:#56304f;animation-delay:.7s}
-.book:nth-child(7){height:135px;background:#773b62}
-@keyframes bookGlow{to{box-shadow:inset 4px 0 7px #ffffff12,0 0 22px #f4a8c42b}}
-.chapter-grid{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:36px
+.book:after{
+  content:"";position:absolute;top:0;bottom:0;left:50%;width:22px;
+  transform:translateX(-50%);pointer-events:none;
+  background:linear-gradient(90deg,#0000000c,#ffffff60 45%,#00000010)
 }
-.chapter{
-  background:linear-gradient(145deg,#44233f,#29152d);
-  border:1px solid #f4a8c42b;border-radius:17px;padding:24px 18px;
-  text-align:left;min-height:185px;transition:.3s;position:relative;overflow:hidden
+.page{
+  min-width:0;padding:clamp(24px,4.2vw,55px);
+  display:flex;flex-direction:column;position:relative;
+  background:linear-gradient(90deg,#e9dccd20,transparent 18%,transparent 80%,#ad8d7010)
 }
-.chapter:after{
-  content:"";position:absolute;width:100px;height:100px;border-radius:50%;
-  background:#f4a8c40c;right:-35px;bottom:-35px
+.page.left{border-right:1px solid #cbb8a6}
+.page.right{border-left:1px solid #ffffff66}
+.page-top{
+  font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);text-align:center;margin-bottom:30px
 }
-.chapter:hover{transform:translateY(-6px);border-color:var(--rose);box-shadow:0 15px 35px #0002}
-.chapter-num{font-size:.72rem;color:var(--gold);letter-spacing:2px}
-.chapter h3{font-size:1.65rem;color:var(--pink);margin:15px 0 8px}
-.chapter p{font-size:.82rem;color:var(--muted)}
-.read-link{display:inline-block;margin-top:15px;color:var(--rose);font-size:.8rem}
-.letter-panel{
-  max-width:750px;margin:35px auto 0;padding:clamp(25px,6vw,55px);
-  border:1px solid #e9c58a4c;background:linear-gradient(140deg,#3c2039,#261329);
-  border-radius:5px 25px 5px 25px;box-shadow:0 20px 70px #0003;
-  text-align:left;position:relative
+.page h2{
+  font-weight:normal;font-size:clamp(1.5rem,3vw,2.25rem);
+  line-height:1.15;text-align:center;margin:5px 0 24px
 }
-.letter-panel:before{
-  content:"✦";position:absolute;top:17px;right:22px;color:var(--gold)
+.page h3{font-size:1rem;font-weight:normal;font-style:italic;text-align:center;color:#76505f;margin:0 0 23px}
+.page-text{font-size:clamp(.91rem,1.4vw,1.03rem);line-height:1.95;white-space:normal}
+.page-text p{margin:0 0 16px;text-align:justify;text-indent:1.1em}
+.page-text p:first-child{text-indent:0}
+.page-text p:first-child:first-letter{font-size:1.7em}
+.page-number{
+  margin-top:auto;padding-top:28px;text-align:center;
+  color:#9b7c85;font-size:.8rem
 }
-.letter-panel p{margin:17px 0;color:#f5dce7}
-.letter-panel h3{font-size:2rem;color:var(--gold)}
-.signature{text-align:right;color:var(--rose)!important;font-family:'Cormorant Garamond',serif;font-size:1.5rem}
-.story-box{
-  max-width:760px;margin:35px auto 0;text-align:left;
-  padding:clamp(25px,6vw,50px);background:#fff8f204;
-  border:1px solid #ffffff18;border-radius:18px;
+.blank{background:linear-gradient(90deg,#e9dccd20,transparent)}
+.book.turning{animation:turn .28s ease}
+@keyframes turn{0%{opacity:.6;transform:translateX(7px)}100%{opacity:1;transform:translateX(0)}}
+.controls{
+  display:flex;align-items:center;justify-content:center;gap:15px;
+  flex-wrap:wrap;padding:25px 10px 15px
 }
-.story-box h3{font-size:2rem;color:var(--pink);margin-bottom:15px}
-.story-box p{color:#e7cad9;margin:14px 0}
-.story-box .chapter-label{color:var(--gold);font-size:.7rem;letter-spacing:3px}
-.story-controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:25px}
-.promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:35px}
-.promise{
-  padding:23px 16px;border-radius:17px;border:1px solid #f4a8c426;
-  background:#ffffff06
-}
-.promise .icon{font-size:1.8rem}
-.promise h3{font-size:1.5rem;color:var(--rose);margin:10px 0}
-.promise p{font-size:.82rem;color:var(--muted)}
-.final{
-  background:radial-gradient(ellipse at 50% 50%,#6e3155,transparent 70%);
-  padding:110px 20px
-}
-.final h2{color:var(--pink);margin:20px 0}
-footer{border-top:1px solid #ffffff12;padding:30px 20px;text-align:center;color:var(--muted);font-size:.8rem}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* password screen */
-#lockScreen{
-  position:fixed;inset:0;z-index:1000;background:
-  radial-gradient(ellipse at 50% 30%,#67304f,#210f25 68%);
-  display:grid;place-items:center;padding:22px
-}
-.lock-card{
-  width:min(430px,100%);text-align:center;padding:35px 24px;
-  border:1px solid #f4a8c455;background:#ffffff08;
-  border-radius:25px;box-shadow:0 20px 80px #0004
-}
-.lock-icon{font-size:3rem;margin-bottom:15px}
-.lock-card h2{font-size:2.8rem;color:var(--pink);margin:12px 0}
-.lock-card p{color:var(--muted);font-size:.9rem}
-.lock-form{display:flex;gap:8px;margin-top:23px}
-.lock-form input{
-  min-width:0;flex:1;background:#ffffff0c;border:1px solid #f4a8c455;
-  color:white;border-radius:30px;padding:13px 15px;outline:none
-}
-.lock-form input:focus{border-color:var(--rose)}
-#lockError{color:#ff9fb9;font-size:.8rem;min-height:25px;margin-top:12px}
-#site{display:none}
+.controls .btn{color:#f6dbe5;border-color:#bc879b}
+#progress{font-size:.8rem;color:#d8bdc9;min-width:95px;text-align:center}
+.read-hint{text-align:center;color:#bfa8b3;font-size:.78rem;line-height:1.7;padding:0 15px 40px}
+.end-note{max-width:700px;margin:30px auto 70px;text-align:center;padding:25px;color:#e6ced8;line-height:2}
+.end-note h2{font-weight:normal;font-style:italic;color:#f2ccdb}
+footer{text-align:center;border-top:1px solid #ffffff18;padding:27px 15px;color:#bfa8b3;font-size:.8rem;line-height:2}
 @media(max-width:650px){
-  .nav-links{gap:12px;font-size:.68rem}
-  .chapter-grid{grid-template-columns:1fr}
-  .chapter{min-height:auto}
-  .promise-grid{grid-template-columns:1fr}
-  .section{padding:70px 0}
-  .hero{min-height:84vh}
-  .lock-form{flex-direction:column}
-  .lock-form .btn{width:100%}
+  header{padding:18px 15px}
+  header span:last-child{font-size:.58rem;letter-spacing:1px}
+  .intro{padding:43px 20px 28px}
+  .open-book{padding:0 9px}
+  .book-frame{padding:6px}
+  .book{display:block;min-height:0}
+  .book:after{display:none}
+  .page{padding:28px 24px 23px;min-height:570px;border:0!important}
+  .page.left{display:none}
+  .page h2{font-size:2rem}
+  .page-text{font-size:1rem;line-height:1.9}
+  .page-number{padding-top:24px}
+  .controls{gap:8px}
+  .controls .btn{padding:10px 13px;font-size:.85rem}
+  .read-hint{padding-bottom:28px}
 }
 @media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  *,*:before,*:after{animation:none!important;transition:none!important}
 }
 </style>
 </head>
-
 <body>
-<div id="stars"></div>
 
-<!-- PASSWORD SCREEN -->
-<div id="lockScreen">
-  <div class="lock-card">
-    <div class="lock-icon">🗝️</div>
-    <div class="eyebrow">A secret library awaits</div>
-    <h2 class="serif">For Rinku</h2>
-    <p>Har kitaab har kisi ke liye nahi hoti.<br>
-    Yeh kahani sirf us ladki ke liye hai jiska naam Rinku hai. 🎀</p>
-    <form class="lock-form" id="unlockForm">
-      <input id="passwordInput" type="password" placeholder="Secret password..." autocomplete="off" required>
-      <button class="btn btn-solid" type="submit">Unlock ♡</button>
+<div id="gate">
+  <div class="gate-card">
+    <div style="font-size:2rem">♡</div>
+    <div class="kicker">A novel written for one reader</div>
+    <h1>Rinku</h1>
+    <p>Somewhere between a dream and a memory,<br>a story has been waiting for you.</p>
+    <form id="unlock">
+      <input id="password" type="password" placeholder="Enter the secret password" required>
+      <button class="btn" type="submit">OPEN MY BOOK</button>
     </form>
-    <div id="lockError" aria-live="polite"></div>
-    <p style="font-size:.7rem;margin-top:12px">A little mystery. A little magic. A lot of heart.</p>
+    <div id="error"></div>
+    <p style="font-size:.75rem">A story from RJ, with love.</p>
   </div>
 </div>
 
-<div id="site">
-<nav class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="#home">Rinku ♡</a>
-    <div class="nav-links">
-      <a href="#library">Library</a>
-      <a href="#story">Our Story</a>
-      <a href="#letter">Letter</a>
-    </div>
-  </div>
-</nav>
+<div id="website" class="hidden">
+<header>
+  <div class="logo">Rinku ♡</div>
+  <span>THE PRIVATE EDITION · RJ</span>
+</header>
 
-<main>
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="eyebrow">Volume I · A story written for you</div>
-    <div class="heart" style="margin-top:25px">♡</div>
-    <h1 class="serif">Rinku</h1>
-    <p class="subtitle">“Some stories are read with the eyes.<br>Some are felt with the heart.”</p>
-    <p class="muted">Ek secret library hai, ek kahani hai…<br>aur us kahani ki sabse khoobsurat wajah tum ho.</p>
-    <div style="margin-top:30px">
-      <a class="btn btn-solid" href="#library">Enter the library ✧</a>
-    </div>
-    <div class="library-art" aria-label="A glowing bookshelf illustration">
-      <div class="book"></div><div class="book"></div><div class="book"></div>
-      <div class="book"></div><div class="book"></div><div class="book"></div><div class="book"></div>
-    </div>
-    <p class="eyebrow" style="margin-top:17px">Made with love by RJ</p>
-  </div>
+<section class="intro">
+  <div class="kicker">A dark romance novel</div>
+  <h1>The Girl in His Dreams</h1>
+  <p>
+    He had seen her face a thousand times in dreams.<br>
+    The impossible part was that she had been dreaming of him, too.
+  </p>
+  <p style="margin-top:15px;font-style:italic;color:#d6a9bc">Written for Rinku · From RJ</p>
 </section>
 
-<section class="section" id="library">
-  <div class="wrap center reveal">
-    <div class="eyebrow">Choose your next chapter</div>
-    <h2 style="margin-top:15px">The Secret <span class="pink">Library</span></h2>
-    <div class="rule"></div>
-    <p class="muted">Har chapter mein ek raaz hai. Har page par ek ehsaas.<br>
-    Dheere-dheere padhna, Rinku. Yeh kahani jaldi khatam karne ke liye nahi hai. 🌙</p>
-  </div>
-  <div class="wrap">
-    <div class="chapter-grid">
-      <button class="chapter" onclick="openChapter(0)">
-        <span class="chapter-num">CHAPTER 01</span>
-        <h3>The Girl in the Library</h3>
-        <p>Ek aisi ladki jise kitaabon ki duniya se pyaar tha…</p>
-        <span class="read-link">Open chapter ↗</span>
-      </button>
-      <button class="chapter" onclick="openChapter(1)">
-        <span class="chapter-num">CHAPTER 02</span>
-        <h3>The Quiet Obsession</h3>
-        <p>Jab koi ek insaan har kahani ka favourite hissa ban jaaye.</p>
-        <span class="read-link">Open chapter ↗</span>
-      </button>
-      <button class="chapter" onclick="openChapter(2)">
-        <span class="chapter-num">CHAPTER 03</span>
-        <h3>Midnight Promises</h3>
-        <p>Raat, chaand aur kuch waade jo dil se kiye jaate hain.</p>
-        <span class="read-link">Open chapter ↗</span>
-      </button>
-      <button class="chapter" onclick="openChapter(3)">
-        <span class="chapter-num">CHAPTER 04</span>
-        <h3>Between the Lines</h3>
-        <p>Kuch feelings jo words mein poori tarah nahi likhi ja sakti.</p>
-        <span class="read-link">Open chapter ↗</span>
-      </button>
-      <button class="chapter" onclick="openChapter(4)">
-        <span class="chapter-num">CHAPTER 05</span>
-        <h3>My Favourite Ending</h3>
-        <p>Ek ending nahi… ek nayi kahani ki shuruaat.</p>
-        <span class="read-link">Open chapter ↗</span>
-      </button>
-      <button class="chapter" onclick="openChapter(5)">
-        <span class="chapter-num">BONUS CHAPTER</span>
-        <h3>A Letter from RJ</h3>
-        <p>Ek letter jo kisi bookshelf mein nahi, tumhare liye hai.</p>
-        <span class="read-link">Read your letter ↗</span>
-      </button>
+<div class="open-book">
+  <div class="book-frame">
+    <div class="book" id="book">
+      <article class="page left" id="leftPage"></article>
+      <article class="page right" id="rightPage"></article>
     </div>
   </div>
-</section>
-
-<section class="section" id="story" style="background:#ffffff04">
-  <div class="wrap center reveal">
-    <div class="eyebrow">A dark romance inspired tale</div>
-    <h2 style="margin-top:15px">Written in <span class="pink">Midnight Ink</span></h2>
-    <p class="muted" style="margin-top:15px">Choose a chapter above or start reading below.</p>
-    <div class="story-box" id="storyBox">
-      <div class="chapter-label" id="storyLabel">CHAPTER 01</div>
-      <h3 id="storyTitle">The Girl in the Library</h3>
-      <div id="storyText">
-        <p>She loved books because between their pages, the world became quiet. Every story was a door, every sentence a secret passage to somewhere new.</p>
-        <p>And somewhere in that endless library, a story was waiting that didn't begin with a prince or a perfect hero. It began with a simple thought: what if someone saw the world the way she did?</p>
-        <p>Us kahani mein ladki ka naam Rinku tha. Aur uske liye likhne wala ladka, RJ, bas itna chahta tha ki woh apni kahani ki heroine khud bane.</p>
-      </div>
-      <div class="story-controls">
-        <button class="btn" onclick="changeChapter(-1)">← Previous</button>
-        <button class="btn btn-solid" onclick="changeChapter(1)">Next chapter →</button>
-      </div>
-    </div>
-    <p class="muted" style="font-size:.8rem;margin-top:17px">Fictional romantic story created specially for this website.</p>
+  <div class="controls">
+    <button class="btn" id="prev">← Previous</button>
+    <span id="progress">Pages 1–2</span>
+    <button class="btn" id="next">Next →</button>
   </div>
-</section>
-
-<section class="section" id="letter">
-  <div class="wrap center reveal">
-    <div class="eyebrow">A page from my heart</div>
-    <h2 style="margin-top:15px">Dear <span class="pink">Rinku</span>…</h2>
-    <div class="letter-panel">
-      <h3>To the girl who loves stories,</h3>
-      <p>Hey meri Rinku 🎀</p>
-      <p>Main soch raha tha ki tumhe aisa kya doon jo tumhari favourite duniya se juda ho. Phir laga, tumhe books pasand hain… toh kyun na tumhare liye ek chhoti si digital book banaun?</p>
-      <p>Tum meri life ki koi perfect fictional character nahi ho. Tum real ho — apni feelings, apni choices, apni khushiyon aur apne dreams ke saath. Aur shayad isi wajah se tum mere liye itni special ho.</p>
-      <p>Agar kabhi duniya bahut loud lage, toh apni favourite book khol lena. Aur agar kabhi tumhe lage ki koi tumhari baat sunne wala chahiye, toh main chahta hoon ki tum mujhse bina dare apne dil ki baat keh sako.</p>
-      <p>Main tumhari har kahani ka hero banne ka daawa nahi karta. Bas itna chahta hoon ki main tumhari life mein respect, honesty aur pyaar lekar aaun.</p>
-      <p>Keep reading, keep dreaming, aur apni kahani ki main character hamesha khud rehna. ❤️</p>
-      <p class="signature">Yours, RJ ♡</p>
-    </div>
+  <div class="read-hint">
+    Mobile: swipe left or right to turn the page.<br>
+    Desktop: use the buttons to read the next page.
   </div>
-</section>
+</div>
 
-<section class="section">
-  <div class="wrap center reveal">
-    <div class="eyebrow">Three little promises</div>
-    <h2 style="margin-top:15px">Not just words, <span class="pink">Betu.</span></h2>
-    <div class="promise-grid">
-      <div class="promise">
-        <div class="icon">🕯️</div>
-        <h3>Honesty</h3>
-        <p>Baatein chhupane se behtar hai, sach ko pyaar se kehna.</p>
-      </div>
-      <div class="promise">
-        <div class="icon">📖</div>
-        <h3>Listening</h3>
-        <p>Tumhari feelings ko samajhne ki koshish karna, bina judge kiye.</p>
-      </div>
-      <div class="promise">
-        <div class="icon">🌷</div>
-        <h3>Respect</h3>
-        <p>Tumhari boundaries, dreams aur choices ki hamesha respect.</p>
-      </div>
-    </div>
-  </div>
+<section class="end-note">
+  <h2>To my favourite reader,</h2>
+  <p>
+    Rinku, this is a fictional story made especially for you.
+    The chapters may end on a page, but the feelings behind this little book
+    are meant to stay with you.
+  </p>
+  <p style="font-style:italic;color:#efc9d8">— RJ ♡</p>
 </section>
-
-<section class="final center">
-  <div class="wrap reveal">
-    <div class="heart">♡</div>
-    <div class="eyebrow">The end of this page, not the story</div>
-    <h2>To my favourite reader</h2>
-    <p class="muted" style="max-width:570px;margin:0 auto 25px">
-      Rinku, duniya mein laakhon kitaabein hongi, par tumhari kahani sirf tumhari hai.
-      Use apne tareeke se likhna. Aur agar tum chaho, toh main us safar mein tumhare saath chalna chahta hoon. 🎀
-    </p>
-    <button class="btn btn-solid" onclick="finalNote()">One last secret ✧</button>
-    <p id="finalMessage" style="margin:22px auto;max-width:500px;color:var(--pink)" aria-live="polite"></p>
-    <p class="serif pink" style="font-size:2rem;margin-top:20px">RJ ♡ Rinku</p>
-  </div>
-</section>
-</main>
 
 <footer>
-  <p class="serif pink" style="font-size:1.5rem">Rinku's Secret Library</p>
-  <p>Made with love, a little mystery, and many feelings.</p>
-  <p style="font-size:.7rem;margin-top:8px">A private surprise from RJ 🎀</p>
+  RINKU · THE GIRL IN HIS DREAMS<br>
+  A private fictional novel made with love by RJ.
 </footer>
 </div>
 
 <script>
-/* CHANGE THIS PASSWORD BEFORE SHARING THE WEBSITE */
-const SECRET_PASSWORD = "RINKU";
+/* Change this password before sharing the website.
+   This is a simple surprise gate, not secure authentication. */
+const BOOK_PASSWORD = "RINKU";
 
 const chapters = [
 {
-label:"CHAPTER 01",
-title:"The Girl in the Library",
+title:"Prologue",
+heading:"The Girl Who Came at Night",
 text:[
-"She loved books because between their pages, the world became quiet. Every story was a door, every sentence a secret passage to somewhere new.",
-"Somewhere in that endless library, a story was waiting that didn't begin with a prince or a perfect hero. It began with a simple thought: what if someone saw the world the way she did?",
-"Us kahani mein ladki ka naam Rinku tha. Aur uske liye likhne wala ladka, RJ, bas itna chahta tha ki woh apni kahani ki heroine khud bane."
-]},
+`The first time he saw her, he was standing in a place that did not exist.
+
+A long corridor stretched beneath a sky without stars. The walls were dark, the air smelled faintly of rain, and somewhere in the distance a bell rang once. At the far end stood a girl wearing a pale dress. Her face was clearer than anything else in the dream, yet he had never seen her in his waking life.
+
+She looked at him as if she had been searching for him for years.
+
+“Tum phir late ho,” she said.
+
+He tried to ask her name. No sound came out.
+
+She stepped closer, raised her hand as if she wanted to touch his cheek, and whispered, “Is baar mujhe bhoolna mat.”
+
+Then the corridor broke into darkness.`,
+
+`He woke up at 3:17 in the morning, his heart racing and his hands cold. The room was familiar: expensive furniture, heavy curtains, a watch on the bedside table and the faint glow of his phone. Everything was real. Everything except the girl.
+
+It was not the first dream. It had happened so many times that he had stopped telling himself it was random. Sometimes she stood in a garden. Sometimes she sat beside a window reading a book. Sometimes she cried without making a sound.
+
+But always, just before he woke, she looked directly at him.
+
+And always, he felt that he was leaving someone behind.
+
+He was twenty-three, six feet tall, wealthy enough to buy almost anything he wanted, and reckless enough to ruin things he already had. He had never been afraid of a fight. He had never lost sleep over a stranger.
+
+Yet a girl whose name he did not know had begun to haunt every quiet corner of his mind.`,
+
+`His friends called him trouble. His family called him difficult. People in the village lowered their voices when his car passed, not because he was some untouchable hero, but because they knew he could be rude, impatient and quick to turn a small argument into a serious one.
+
+He drank when he wanted to forget. He fought when anger became easier than explaining himself. He had built a reputation that made people expect the worst from him, and, most days, he did very little to prove them wrong.
+
+Still, in his dreams, the girl never looked frightened of him.
+
+She looked disappointed.
+
+That was somehow worse.`
+]
+},
 {
-label:"CHAPTER 02",
-title:"The Quiet Obsession",
+title:"Chapter One",
+heading:"The House That Ruled a Village",
 text:[
-"Some people arrive like thunder. Others arrive quietly and somehow become the thought you return to, even when the day has ended.",
-"RJ didn't want to own Rinku's world. He wanted to understand it — the books she loved, the dreams she carried, the little things that made her smile.",
-"Usse Rinku ki har baat jaanne ki curiosity thi, par usse bhi zyada zaroori tha uski har baat sunna. Pyaar ka matlab kisi ko apna banana nahi, balki usse apna rehne dena bhi hota hai."
-]},
+`The Sakkarwal estate stood beyond a wide iron gate, where the road curved past old trees and fields that seemed to have no end. The family had lived there for generations. Five branches of the family shared the larger ancestral property, and their land, businesses and old connections had made them one of the wealthiest families in the area.
+
+People called the estate an empire. The family itself rarely used the word. They did not need to. Their name was carved into old stone, their stories were repeated in village courtyards, and their decisions carried weight long after the conversations ended.
+
+RJ grew up inside that world.
+
+His father was a Sub-Inspector in the Border Security Force, a disciplined man who believed that a person's word should mean something. His mother had a quieter strength. She knew when to speak and when silence revealed more than questions could. RJ had inherited his father's stubbornness but, for years, seemed to have missed the lesson behind it.`,
+
+`He was not short of money, attention or opportunities. He was short of patience.
+
+At family gatherings he would arrive late, sit apart from the elders and answer questions with a careless smile. He could be generous one moment and impossible the next. He had a good education available to him, a comfortable life waiting for him and a family that wanted him to become someone worthy of the name he carried.
+
+Instead, he treated every warning like a challenge.
+
+His father once told him, “Power ka matlab yeh nahi ki tum jo chaho kar sakte ho. Power ka matlab hai ki tum galat karne se khud ko rok sakte ho.”
+
+RJ had laughed it off.
+
+That night, he dreamt of the girl again.
+
+She was sitting on the steps of an old temple, a book resting in her lap. When he approached, she closed it carefully and looked up.
+
+“Tum apne aap se itna bhaagte kyun ho?” she asked.
+
+He woke before he could answer.
+
+For the first time, the dream did not feel like a memory of a lost place. It felt like a question addressed to the person he had become.`
+]
+},
 {
-label:"CHAPTER 03",
-title:"Midnight Promises",
+title:"Chapter Two",
+heading:"A Message He Never Sent Before",
 text:[
-"At midnight, the library felt like a different universe. The lamps glowed softly, the pages whispered, and the moon kept its secrets behind the window.",
-"RJ wrote a promise in the margin of an unfinished book: I will try to understand before I answer. I will be honest, even when honesty is difficult. I will never make your dreams feel small.",
-"Rinku ke liye yeh koi dramatic vow nahi tha. Bas ek simple si baat thi — pyaar sirf beautiful words nahi, roz ke chhote actions bhi hote hain."
-]},
+`RJ had never been the kind of man who sent a message to a girl simply because he liked her profile. He could talk to almost anyone in person, but he rarely approached someone first without a reason. Pride had a lot to do with it. So did the fear of being ordinary.
+
+Then, on an otherwise forgettable evening, he came across a profile on a social platform.
+
+There was something about the way the girl wrote. Not a perfect photograph or a carefully arranged collection of captions. It was a line about books, another about a character who had made a terrible choice for what she believed was love, and a small observation about how people often misunderstood quiet personalities.
+
+RJ read the words twice.
+
+They sounded strangely familiar.
+
+He opened the message box, typed a greeting, deleted it, and typed another. It took him longer than he wanted to admit to send a simple hello.
+
+Her name was Rinku.`,
+
+`Their first conversation was ordinary. A few questions, a few answers, a little teasing. He expected the exchange to end in ten minutes. Instead, they found themselves talking long after midnight.
+
+Rinku told him that she did not usually give her personal number or Instagram to boys, and that she had never been comfortable having those kinds of conversations with strangers. RJ did not turn that confession into a challenge. He told her they could talk at whatever pace felt right to her.
+
+The next day, they spoke again.
+
+Then the day after that.
+
+They discovered that their humour matched in unexpected places. Their opinions differed in some matters, but their ways of thinking had a similar rhythm. One could begin a sentence and the other would understand where it was going. A joke could turn into a serious discussion, and a serious discussion could somehow end with both of them laughing.
+
+RJ began reading the books she mentioned. At first he did it to understand her references. Soon he found himself staying awake to finish chapters, underlining sentences and sending her passages he thought she might like.
+
+His friends noticed the change before he admitted it.
+
+The man who used to disappear for entire evenings was suddenly checking his phone with an expression that looked suspiciously like happiness.`
+]
+},
 {
-label:"CHAPTER 04",
-title:"Between the Lines",
+title:"Chapter Three",
+heading:"Fourteen Hours of Midnight",
 text:[
-"Not every feeling fits neatly inside a sentence. Sometimes love is a message asking if you reached home safely. Sometimes it is listening to a story you have heard a hundred times.",
-"Sometimes it is an apology that doesn't demand instant forgiveness. Sometimes it is giving someone room to breathe, and staying kind while they find their words.",
-"RJ ne seekha ki kisi ke dil ko samajhne ke liye sirf uski smile dekhna kaafi nahi. Uski silence ko bhi respect dena padta hai."
-]},
+`Their conversations stretched across the day. Fourteen or fifteen hours sometimes passed in messages and calls, broken only by meals, sleep and the ordinary responsibilities neither could escape.
+
+They talked about books, childhood, family expectations, old disappointments and the strange habits they had never bothered to explain to anyone else. Rinku could be playful and shy, thoughtful and stubborn. She sometimes overthought a single sentence. RJ sometimes answered too quickly, then realised that a little patience would have been kinder.
+
+For all their similarities, they were not identical. They had different fears and different ways of handling pain. They occasionally misunderstood each other. But they returned to the conversation instead of pretending that silence had solved everything.
+
+For RJ, that was new.
+
+He had always thought intensity meant never giving someone a moment to look away. Rinku slowly taught him that closeness was not measured by how much of another person's time you could claim. It was measured by whether they felt safe enough to give you their time willingly.`,
+
+`Then one night, Rinku told him something that made the room around him seem suddenly still.
+
+She had been dreaming of a boy.
+
+She could not explain when the dreams had started. The face appeared in fragments: a pair of eyes, a familiar silhouette, a voice she could never quite remember after waking. Sometimes she saw a mark on his skin. Sometimes she woke with the peculiar feeling that she had lost a conversation she had not yet had.
+
+RJ sat up.
+
+“What did you say?”
+
+She repeated it, thinking he had not heard her.
+
+He asked about the details carefully. Not because he wanted to force the dream to fit his own, but because he knew the feeling she was describing. He told her about the corridor, the temple steps and the girl who always seemed to know him before he knew himself.
+
+For a long time, neither spoke.
+
+Then Rinku said, almost in a whisper, “Yeh normal coincidence hai na?”
+
+RJ wanted to give her a confident answer. Instead, he told her the truth.
+
+“Pata nahi. Lekin main bhi yahi soch raha hoon.”`
+]
+},
 {
-label:"CHAPTER 05",
-title:"My Favourite Ending",
+title:"Chapter Four",
+heading:"The Marks Beneath the Mystery",
 text:[
-"The book was never about a perfect ending. It was about two people choosing honesty over guessing, kindness over pride, and conversation over silence.",
-"Rinku closed the book and looked toward the window. The stars were still there, the world was still full of unknown chapters, and her future still belonged to her.",
-"RJ ki favourite ending woh thi jahan dono apne dreams ko chase karte rahein, ek doosre ki respect karein, aur har nayi subah ko ek nayi kahani ka chance samjhein."
-]},
+`They began writing things down.
+
+Rinku made a list of her dreams. RJ described the places he remembered. They compared details without trying to invent the ones that were missing. There were similarities, but also differences. A garden in her dream appeared as a courtyard in his. A familiar mark seemed to match a small mark on his skin, and another detail appeared to correspond with one she had carried for years.
+
+Each discovery made the mystery feel more personal. It did not prove anything about another lifetime. They both knew that memory, dreams and coincidence could be complicated. Still, the pattern fascinated them.
+
+They read about dream psychology, old beliefs about reincarnation and stories of lovers who supposedly found each other again. They debated the explanations like two students trying to solve a puzzle with half the pieces missing.
+
+One evening, Rinku sent him a passage from a novel about two people who kept finding each other in different lives.
+
+RJ stared at it for a long time.
+
+“Maybe we knew each other before,” she wrote. “Maybe we were separated.”
+
+He looked at the dark window beside his bed. For once, he did not laugh at an idea simply because it could not be proved.
+
+“Ho sakta hai,” he replied. “Lekin is life mein main tumhe samajhne ka chance khona nahi chahta.”`,
+
+`It was the first promise he made her without dramatic language or a grand gesture.
+
+And it changed something.
+
+He began noticing the way his temper affected people. He apologised when he was wrong, although the words felt unfamiliar. He reduced the drinking that had become an easy escape. He stepped away from arguments that once would have drawn him in.
+
+He did not transform overnight. Some days he fell back into old habits. Some apologies came late. But he stopped pretending that his past was an excuse for his future.
+
+Rinku never demanded that he become a different person for her. She simply expected him to be honest about the person he already was.
+
+That expectation frightened him more than any fight.
+
+It also made him want to do better.`
+]
+},
 {
-label:"BONUS CHAPTER",
-title:"A Letter from RJ",
+title:"Chapter Five",
+heading:"The Birthday of His Princess",
 text:[
-"Dear Rinku, agar tum yahan tak padh aayi ho, toh meri taraf se ek warm sa virtual hug. 🤗",
-"Yeh chhoti si website tumhe yaad dilane ke liye hai ki tumhari interests, tumhari imagination aur tumhare dreams important hain. Tum sirf kisi ki favourite person nahi — tum apni poori duniya ho.",
-"Jab bhi tum koi nayi book start karo, I hope uske pages tumhe naye ideas, naye worlds aur bahut saari happiness dein.",
-"With love, RJ ♡"
-]}
+`When Rinku's birthday arrived, RJ planned the day with a care that would have surprised anyone who knew his old reputation.
+
+He chose a beautiful café where the light fell softly through the windows and the tables were far enough apart for a conversation to feel private. He arrived early, checked the arrangement twice and then pretended that he had not been nervous at all.
+
+When Rinku walked in, he forgot the clever greeting he had rehearsed.
+
+She smiled.
+
+That was enough to make him smile back.
+
+They spent the afternoon talking, eating and laughing over small things. He listened when she described a book she had been reading. He asked about the parts she liked instead of changing the subject to himself. At one point she caught him looking at her and raised an eyebrow.
+
+“Kya hua?”
+
+“Bas dekh raha hoon,” he said.
+
+“Kya?”
+
+“Ki tum real ho ya main abhi bhi sapna dekh raha hoon.”
+
+She laughed, and the sound stayed with him long after they left the café.`,
+
+`He took her to a temple, where the afternoon had softened into evening. The bells rang above them, and the air smelled of flowers and incense. He did not make a dramatic speech. He simply stood beside her, grateful for a day that had become more beautiful because she was part of it.
+
+Later, Rinku rode her scooty while RJ sat behind her, holding on carefully and teasing her about how confidently she took the turns. She told him to stop talking if he wanted to reach home safely.
+
+He obeyed for nearly thirty seconds.
+
+At a small shop, he bought her bangles, anklets and earrings. He helped her put on the anklets when she asked, handling them more carefully than anyone would have expected from his rough hands. She looked down at the little silver bells and smiled to herself.
+
+For a man who had spent years believing that tenderness was weakness, the moment felt strangely powerful.
+
+He had not bought her the world. He had paid attention to the small things that made her happy.
+
+That night, he gave her a ring and asked her to imagine a future with him. He spoke about marriage, not as a claim over her life, but as a choice he hoped they could make together when the time was right.
+
+Rinku looked at him, then at the ring.
+
+“Tumhe pata hai na,” she said, “main easily haan nahi bolne wali.”
+
+“Pata hai,” he replied. “Isliye toh pooch raha hoon, order nahi de raha.”
+
+She laughed again. He considered it the finest answer he could have received.`
+]
+},
+{
+title:"Chapter Six",
+heading:"Two Days Outside the Hospital",
+text:[
+`The call came on a day when the sky had been grey since morning.
+
+Rinku was unwell enough to be admitted to hospital. RJ reached the building with his mind moving faster than his body. The corridors smelled of disinfectant, and every closed door seemed to hold a question he could not answer.
+
+He was told to wait.
+
+He waited.
+
+Hours passed. The light changed outside the windows. People came and went with paper cups, medicine packets and tired expressions. RJ sat in the same chair, checking his phone whenever it vibrated and looking toward the ward whenever footsteps approached.
+
+He barely ate. When someone offered him food, he said he would have some later. Later became evening, and evening became another morning.
+
+For two days, he stayed close, hoping for a chance to see her.
+
+Her family did not allow him to meet her. They were worried, protective and uncertain about a relationship they had not fully accepted. RJ felt anger rise in him, but he knew that making a scene outside a hospital would not help Rinku. So he stayed where he was permitted to stay and asked for news instead of forcing his way into the ward.
+
+It was the hardest kind of waiting: being near the person you wanted to comfort and still being unable to reach them.`,
+
+`When Rinku finally recovered enough to see him, he looked exhausted. His hair was untidy, his eyes were red from lack of sleep, and the confident expression he wore around everyone else had disappeared.
+
+He tried to speak casually.
+
+She looked at him for a moment and understood how long he had been waiting.
+
+“Tum yahan the?”
+
+“Do din se.”
+
+“Kuch khaya?”
+
+He hesitated.
+
+Her expression changed. She was touched, but she was also upset that he had neglected himself.
+
+“RJ, meri fikr karna aur apna khayal na rakhna same cheez nahi hai.”
+
+He lowered his eyes.
+
+“Pata hai, Betu.”
+
+She reached for his hand and held it. The simple contact made him feel that the long wait had finally ended, even though there were still difficult conversations ahead.
+
+For the first time in a long time, he did not try to hide his exhaustion behind a joke. He sat beside her and let himself be quiet.
+
+She was here. She was getting better.
+
+For that moment, nothing else mattered.`
+]
+},
+{
+title:"Chapter Seven",
+heading:"The Price of a Family Name",
+text:[
+`The argument began when the families tried to discuss the future.
+
+At first, the conversation was civil. There were questions about their plans, their responsibilities and whether the relationship could become a marriage. Then someone mentioned caste.
+
+The atmosphere changed.
+
+RJ had known that their backgrounds might become an obstacle. He had not understood how quickly a word could turn a room full of people against a conversation that had been going well.
+
+Some of Rinku's male relatives stepped forward. Her tau was among those who believed that the relationship would damage the family's standing. Their voices rose. Accusations followed. RJ was told that he had crossed a line simply by loving someone from a different community.
+
+He tried to explain himself. They did not want to listen.
+
+One man shoved him. Another struck him. RJ stumbled against a chair, caught himself and felt the old familiar anger ignite. He had spent years answering violence with violence. His body remembered the habit before his mind could intervene.
+
+He fought back.
+
+There was shouting, pushing and the terrible sound of furniture hitting the floor. RJ took blows and returned them. He was not untouched by fear, nor was he invincible. For a few chaotic moments, nobody seemed able to stop the room from turning into a battlefield.
+
+Then Rinku's father shouted for everyone to stop.
+
+His voice cut through the noise.
+
+He stepped between the men and demanded that they back away. The room fell into a strained silence, broken only by hurried breathing and someone moving a fallen chair.`,
+
+`RJ stood with a split lip and shaking hands. He wanted to say something cruel. He wanted to make everyone regret the way they had treated him.
+
+Instead, he looked at Rinku.
+
+She was frightened, angry and hurt. He could see that the fight had cost her something, too. This was her family, her home and her future being argued over as if she were not standing in the room.
+
+He swallowed the words he had been about to throw at her relatives.
+
+Rinku's father asked everyone to sit down. For the first time that evening, someone asked the couple what they actually wanted.
+
+They spoke.
+
+Not perfectly. Not without interruptions. But they spoke about their intentions, their responsibilities and the future they hoped to build. RJ made it clear that his family's wealth would not be used to pressure anyone. Rinku made it clear that her choices mattered and that she would not accept being treated like a prize to be won.
+
+The discussion lasted late into the night.
+
+Nothing was magically repaired. Some relatives remained angry. Some needed time. But her father had seen that the boy everyone called reckless could stop himself from turning every insult into another fight.
+
+When RJ finally left, he did not feel victorious.
+
+He felt the weight of what they would have to face.
+
+And for the first time, he understood that loving Rinku meant protecting the possibility of a peaceful future, not simply proving that he could win an argument.`
+]
+},
+{
+title:"Chapter Eight",
+heading:"The Decision Made in Silence",
+text:[
+`Weeks passed. The families continued talking, sometimes with patience and sometimes with old resentment returning to the surface.
+
+RJ's father listened to the full story before responding. He was not impressed by the fight, and he did not praise his son for enduring it. He asked a harder question.
+
+“Kal ko koi aur problem aayi, toh kya tum phir haath uthaoge?”
+
+RJ looked away.
+
+His father continued. “Apni family ka naam, paisa, zameen — in sab ka kya faayda agar tum apne gusse par control nahi kar sakte? Agar tum Rinku ke saath ghar basana chahte ho, toh use sirf apna pyaar nahi, apna sukoon bhi dena seekho.”
+
+The words hurt because they were true.
+
+RJ began doing the unglamorous work of changing. He took responsibility for his temper. He stopped using money to settle disagreements. He learnt to leave a heated room before he said something he could not take back. He accepted that trust would take longer to rebuild than it had taken to lose.
+
+Rinku noticed the difference, not because he announced it, but because she saw it in ordinary moments.
+
+When she needed time, he gave it. When she disagreed, he listened. When he made a mistake, he tried to apologise without adding a list of reasons why he had done it.`,
+
+`Eventually, both families began to soften.
+
+It was not a single grand reconciliation. It happened through many conversations, shared meals, awkward greetings and promises that were followed by action. Rinku's father spoke privately with RJ. The older men discussed practical matters. Some relatives remained unconvinced, but the people whose support mattered most began to accept that the couple's future should not be decided by anger alone.
+
+Then, one evening, Rinku told RJ about a wish she had kept since childhood.
+
+She wanted to get married in the mountains.
+
+Not in a crowded hall with a schedule and a hundred people watching. She imagined cold air, distant peaks, a mandap decorated with flowers, and the people she loved gathered around her. She wanted the wedding to feel like stepping into a beautiful story.
+
+RJ listened carefully.
+
+“Pahadon mein?” he asked.
+
+“Pahadon mein,” she repeated. “Aur mujhe thoda filmy surprise bhi chahiye.”
+
+He smiled.
+
+“Surprise arrange karna meri responsibility. Lekin tumhari permission meri priority.”
+
+She laughed and told him not to ruin the surprise by asking too many questions.
+
+He did not tell her what he had begun planning.`
+]
+},
+{
+title:"Chapter Nine",
+heading:"The Wedding Nobody Expected",
+text:[
+`The families had finally agreed to the marriage. Plans were being made at home, and the wedding mandap was being prepared. From the outside, everything looked settled.
+
+RJ knew that Rinku still carried one little dream: she wanted to arrive at a mountain wedding as though she had been swept into the final chapter of a romance novel.
+
+So he spoke with both families and arranged a surprise with their knowledge and consent. The plan was simple in its heart, even if the details required careful work. Rinku would be taken on a journey without being told the final destination. Her family would meet them there. The ceremony would happen in the mountains, exactly where she had always imagined it.
+
+On the morning of the surprise, Rinku was told that they were going for a short trip. She asked too many questions. RJ gave unconvincing answers. She narrowed her eyes at him.
+
+“Tum kuch chhupa rahe ho.”
+
+“Main?” he said, pretending to be offended. “Main toh duniya ka sabse seedha insaan hoon.”
+
+She laughed so hard that he nearly confessed everything.
+
+The road began to climb. The air grew cooler, and the landscape changed from familiar streets to winding roads, tall trees and distant ridgelines. Rinku looked out of the window, trying to guess where they were going.
+
+Then the car stopped near a mountain clearing.
+
+She stepped outside.
+
+For a moment, she could not speak.`,
+
+`Flowers framed a small mandap beneath the open sky. Soft fabric moved in the mountain breeze. The family members she had hoped to see stood nearby, smiling and trying not to give away how long they had been waiting. The mountains rose behind them, quiet and enormous.
+
+Rinku turned slowly toward RJ.
+
+“Yeh… kya hai?”
+
+He held out his hand.
+
+“Tumhari wish thi na, Betu?”
+
+Her eyes filled with tears. She looked at the mandap, then at her family, then back at him.
+
+“Tumne sach mein kar diya?”
+
+“Humne,” he corrected gently. “Sabne milke.”
+
+She laughed through her tears and held his hand. There was no dramatic escape, no fear of being dragged away from her own life. There was a surprise, a journey she had chosen to trust, and a future that the people around them had finally agreed to support.
+
+Her family gathered close. Someone adjusted the flowers. Someone else complained that the wind was ruining their photographs. The ordinary little chaos made the moment feel even more real.
+
+RJ looked at Rinku and realised that the girl from his dreams was standing in front of him, not as a mysterious figure he had to chase through darkness, but as the woman who had chosen to build a life beside him.
+
+The past, whatever it had been, could remain a mystery.
+
+The present was enough.`
+]
+},
+{
+title:"Chapter Ten",
+heading:"The Mountains Remember",
+text:[
+`The ceremony began as the sun softened behind the mountains.
+
+Rinku wore the wedding clothes she had dreamed about. The jewellery caught the light whenever she moved, and the anklets made a faint sound beneath the music. RJ stood waiting in traditional clothes, trying to appear composed and failing every time he saw her smile.
+
+For a moment, the old dreams returned to him: the endless corridor, the temple steps, the girl who had told him not to forget her.
+
+But the woman walking toward him now was not a shadow from a dream. She was Rinku, with her own memories, her own courage and her own reasons for choosing him.
+
+When she reached the mandap, he offered her his hand.
+
+She took it.
+
+There were blessings, laughter and a few tears. Their families stood close enough to witness every promise. The man who had once believed that strength meant never backing down now understood that strength could also mean standing still, listening and keeping a promise when nobody was watching.
+
+When they exchanged vows, he did not promise that life would always be easy. He promised to speak honestly, to respect her choices, to work on the parts of himself that could hurt the people he loved, and to build a home where neither of them would have to become smaller to keep the peace.
+
+Rinku made her own promises. They belonged to both of them, freely given.`,
+
+`Later, when the celebrations had quieted, they stood together looking at the mountains. The night sky was filled with stars. Somewhere below them, lights shone in the valley like pages illuminated from within.
+
+“Tumhe ab bhi woh sapne aate hain?” Rinku asked.
+
+RJ considered the question.
+
+“Kabhi-kabhi.”
+
+“Mujhe bhi.”
+
+He smiled and looked at her.
+
+“Maybe hum pehle bhi mile hon. Maybe nahi. Main abhi bhi nahi jaanta.”
+
+She leaned against him.
+
+“Phir?”
+
+“Phir bhi main tumhe choose karta. Is life mein. Is kahani mein.”
+
+Rinku was quiet for a moment. Then she slipped her hand into his and looked up at the sky.
+
+“Achha answer tha,” she whispered.
+
+He laughed.
+
+For the first time, the dreams no longer felt like a warning that he might lose her. They felt like an old mystery whose answer did not need to be solved tonight.
+
+The mountains stood around them, silent witnesses to a wedding that had begun as a wish and become a promise.
+
+And somewhere in a house far away, an unfinished book waited on a shelf.
+
+Its last page was blank.
+
+Not because the story had ended, but because the next chapter belonged to them.`
+]
+},
+{
+title:"Epilogue",
+heading:"Her Favourite Book",
+text:[
+`Months later, Rinku found RJ sitting beside a window with a book open in his hands.
+
+She stopped in the doorway.
+
+“Tum book padh rahe ho?”
+
+He glanced up. “Nahi, cover dekh raha hoon. Pages bhi accidentally khul gaye.”
+
+She burst out laughing and sat beside him.
+
+The book was one she had recommended long ago, back when their conversations had lasted through the night and neither of them understood why a stranger could feel so familiar. Its pages were marked with little notes. A few lines had been underlined. Beside one paragraph, RJ had written a single word: Rinku.
+
+She ran her fingers over the page.
+
+“Tum sach mein meri wajah se reader ban gaye.”
+
+“Tumhari wajah se bahut kuch seekha,” he said.
+
+Outside, rain began to fall. The room grew quiet except for the soft tapping against the window. Rinku leaned closer to read the passage he had marked, and RJ turned the book slightly so they could share the page.
+
+There was no grand mystery left to solve that evening. No argument to win. No impossible corridor waiting in a dream.
+
+There was a book, a rainy window and the girl he had once searched for without knowing her name.`,
+
+`Before they closed the book, Rinku wrote something in the margin.
+
+Somewhere, in another life, perhaps we had already met.
+
+Below it, RJ added:
+
+And in this life, I got to know you.
+
+She looked at him, smiling.
+
+“Happy ending?”
+
+He shook his head gently.
+
+“Happy beginning.”
+
+The book closed with a soft sound. Outside, the rain continued. Inside, two people stayed beside the same window, already talking about which book they would read next.
+
+And that, perhaps, was the real magic.
+
+Not that fate had written their story before they arrived.
+
+But that they had found each other, made their choices, faced the difficult pages, and decided to keep reading.
+
+Together.`
+]
+}
 ];
 
-let currentChapter = 0;
-
-function showChapter(index){
-  currentChapter = Math.max(0,Math.min(chapters.length-1,index));
-  const c = chapters[currentChapter];
-  document.getElementById("storyLabel").textContent = c.label;
-  document.getElementById("storyTitle").textContent = c.title;
-  const textBox = document.getElementById("storyText");
-  textBox.innerHTML = "";
-  c.text.forEach(line=>{
-    const p = document.createElement("p");
-    p.textContent = line;
-    textBox.appendChild(p);
+const allPages = [];
+chapters.forEach(ch=>{
+  ch.text.forEach((text,index)=>{
+    allPages.push({
+      chapter:ch.title,
+      heading:ch.heading,
+      text,
+      first:index===0
+    });
   });
-}
-function openChapter(index){
-  showChapter(index);
-  document.getElementById("story").scrollIntoView({behavior:"smooth"});
-}
-function changeChapter(direction){
-  showChapter((currentChapter + direction + chapters.length) % chapters.length);
-}
-
-function finalNote(){
-  document.getElementById("finalMessage").textContent =
-    "Secret yeh hai, Rinku: tumhari favourite stories chahe kitni bhi dark hon, I hope real life tumhe hamesha kindness, safety aur genuine love de. — RJ 🎀";
-  petals(22);
-}
-
-/* Client-side surprise gate only. Not secure authentication. */
-document.getElementById("unlockForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  const entered = document.getElementById("passwordInput").value;
-  if(entered.toLowerCase() === SECRET_PASSWORD.toLowerCase()){
-    document.getElementById("lockScreen").classList.add("hidden");
-    document.getElementById("site").style.display = "block";
-    document.body.style.overflowX = "hidden";
-    try{sessionStorage.setItem("rinkuLibraryUnlocked","yes")}catch(e){}
-    makeStars();
-    setTimeout(petals,700);
-  }else{
-    document.getElementById("lockError").textContent = "Hmm… yeh secret key nahi hai, Betu. Try again ♡";
-    document.getElementById("passwordInput").value = "";
-  }
 });
 
-try{
-  if(sessionStorage.getItem("rinkuLibraryUnlocked")==="yes"){
-    document.getElementById("lockScreen").classList.add("hidden");
-    document.getElementById("site").style.display="block";
-  }
-}catch(e){}
+let pageIndex=0;
+const leftPage=document.getElementById("leftPage");
+const rightPage=document.getElementById("rightPage");
+const book=document.getElementById("book");
+const progress=document.getElementById("progress");
 
-function makeStars(){
-  const layer=document.getElementById("stars");
-  if(layer.children.length)return;
-  for(let i=0;i<75;i++){
-    const s=document.createElement("i");
-    s.className="star";
-    s.style.left=Math.random()*100+"%";
-    s.style.top=Math.random()*100+"%";
-    const size=1+Math.random()*2.5;
-    s.style.width=size+"px";
-    s.style.height=size+"px";
-    s.style.animationDelay=Math.random()*4+"s";
-    layer.appendChild(s);
+function escapeHTML(s){
+  return s.replace(/[&<>"']/g,c=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[c]);
+}
+function makePage(page,number,isRight){
+  if(!page){
+    return `<div class="page-number">${number}</div>`;
+  }
+  const paras=page.text.split(/\n\n+/).map(t=>`<p>${escapeHTML(t)}</p>`).join("");
+  return `
+    <div class="page-top">RINKU · A NOVEL BY RJ</div>
+    ${page.first?`<h3>${escapeHTML(page.chapter)}</h3><h2>${escapeHTML(page.heading)}</h2>`:""}
+    <div class="page-text">${paras}</div>
+    <div class="page-number">${number}</div>`;
+}
+function renderPages(animate=false){
+  const mobile=window.matchMedia("(max-width:650px)").matches;
+  if(mobile){
+    leftPage.style.display="none";
+    rightPage.style.display="flex";
+    rightPage.innerHTML=makePage(allPages[pageIndex],pageIndex+1,true);
+    progress.textContent=`Page ${pageIndex+1} of ${allPages.length}`;
+    document.getElementById("prev").disabled=pageIndex===0;
+    document.getElementById("next").disabled=pageIndex===allPages.length-1;
+  }else{
+    leftPage.style.display="flex";
+    rightPage.style.display="flex";
+    leftPage.innerHTML=makePage(allPages[pageIndex],pageIndex+1,false);
+    rightPage.innerHTML=makePage(allPages[pageIndex+1],pageIndex+2,true);
+    progress.textContent=`Pages ${pageIndex+1}–${Math.min(pageIndex+2,allPages.length)} / ${allPages.length}`;
+    document.getElementById("prev").disabled=pageIndex===0;
+    document.getElementById("next").disabled=pageIndex>=allPages.length-2;
+  }
+  if(animate){
+    book.classList.remove("turning");
+    void book.offsetWidth;
+    book.classList.add("turning");
   }
 }
-function petals(count=12){
-  for(let i=0;i<count;i++){
-    const p=document.createElement("span");
-    p.className="petal";
-    p.textContent=["🌸","♡","✧","🌷"][Math.floor(Math.random()*4)];
-    p.style.left=Math.random()*100+"vw";
-    p.style.fontSize=(12+Math.random()*16)+"px";
-    p.style.animationDuration=(5+Math.random()*6)+"s";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),12000);
-  }
+function step(direction){
+  const mobile=window.matchMedia("(max-width:650px)").matches;
+  const stepSize=mobile?1:2;
+  const max=mobile?allPages.length-1:Math.max(0,allPages.length-2);
+  pageIndex=Math.max(0,Math.min(max,pageIndex+direction*stepSize));
+  renderPages(true);
 }
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
-  });
-},{threshold:.1});
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-if(document.getElementById("site").style.display==="block")makeStars();
+document.getElementById("prev").addEventListener("click",()=>step(-1));
+document.getElementById("next").addEventListener("click",()=>step(1));
+window.addEventListener("resize",()=>renderPages());
+
+let touchStartX=0,touchStartY=0;
+book.addEventListener("touchstart",e=>{
+  touchStartX=e.changedTouches[0].clientX;
+  touchStartY=e.changedTouches[0].clientY;
+},{passive:true});
+book.addEventListener("touchend",e=>{
+  const dx=e.changedTouches[0].clientX-touchStartX;
+  const dy=e.changedTouches[0].clientY-touchStartY;
+  if(Math.abs(dx)>55 && Math.abs(dx)>Math.abs(dy)*1.2){
+    step(dx<0?1:-1);
+  }
+},{passive:true});
+
+document.getElementById("unlock").addEventListener("submit",e=>{
+  e.preventDefault();
+  const entered=document.getElementById("password").value;
+  if(entered.toLowerCase()===BOOK_PASSWORD.toLowerCase()){
+    document.getElementById("gate").classList.add("hidden");
+    document.getElementById("website").classList.remove("hidden");
+    renderPages();
+  }else{
+    document.getElementById("error").textContent="Wrong password. Try again, Rinku. ♡";
+  }
+});
+renderPages();
 </script>
 </body>
 </html>
